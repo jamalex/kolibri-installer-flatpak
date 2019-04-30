@@ -1,0 +1,1 @@
+# kolibri-installer-flatpak
