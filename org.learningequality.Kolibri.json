@@ -4,16 +4,31 @@
     "runtime-version": "18.08",
     "sdk": "org.freedesktop.Sdk",
     "finish-args": [
-       "--share=network"
+       "--share=network",
+       "--filesystem=~/.kolibri:create"
     ],
     "command": "run_kolibri.sh",
     "modules": [
         {
-            "name": "kolibri",
+          "name": "kolibri",
+          "buildsystem": "simple",
+          "build-commands": [
+            "pip3 install --prefix=/app ."
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://files.pythonhosted.org/packages/2b/95/66349fd603b8d5b7a1edcb4c1d19c72f1cb05d1e913d26a1d245cc75d36b/kolibri-0.12.2.tar.gz",
+              "sha256": "9c166ba517f5e9bcff23677b17e76c9661ce5e26d49692b6c7449bca7ea01a9a"
+            }
+          ]
+        },
+        {
+            "name": "run_kolibri",
             "buildsystem": "simple",
             "build-commands": [
-                "install -D kolibri.pex /app/bin/kolibri.pex",
-                "install -D run_kolibri.sh /app/bin/run_kolibri.sh"
+                "install -D run_kolibri.sh /app/bin/run_kolibri.sh",
+                "install -D run_kolibri.sh /app/bin/stop_kolibri.sh"
             ],
             "sources": [
                 {
@@ -22,7 +37,7 @@
                 },
                 {
                     "type": "file",
-                    "path": "kolibri.pex"
+                    "path": "src/stop_kolibri.sh"
                 }
             ]
         }
