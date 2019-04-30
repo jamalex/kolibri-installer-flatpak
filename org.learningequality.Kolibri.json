@@ -1,0 +1,30 @@
+{
+    "app-id": "org.learningequality.Kolibri",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "18.08",
+    "sdk": "org.freedesktop.Sdk",
+    "finish-args": [
+       "--share=network"
+    ],
+    "command": "run_kolibri.sh",
+    "modules": [
+        {
+            "name": "kolibri",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D kolibri.pex /app/bin/kolibri.pex",
+                "install -D run_kolibri.sh /app/bin/run_kolibri.sh"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "src/run_kolibri.sh"
+                },
+                {
+                    "type": "file",
+                    "path": "kolibri.pex"
+                }
+            ]
+        }
+    ]
+}

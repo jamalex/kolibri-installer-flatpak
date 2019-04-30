@@ -1,0 +1,5 @@
+*.pex
+build/
+build-dir/
+repo/
+.flatpak-builder/
